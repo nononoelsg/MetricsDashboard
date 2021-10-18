@@ -200,7 +200,7 @@ Handling connection for 3000
 Handling connection for 3000
 Handling connection for 3000
 ```
-![Grafana dashboard](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/Grafana%20login%20page.PNG)
+![Grafana dashboard](Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/Grafana login page.PNG)
 
 ##  Exposing the application
 
@@ -211,6 +211,7 @@ Handling connection for 3000
 ## Verify the monitoring installation
 *TODO:* run `kubectl` command to show the running pods and services for all components. Take a screenshot of the output and include it here to verify the installation
 
+```bash
 PS C:\Users\Noel\Desktop\udacity\MetricsDashboard\Project_Starter_Files-Building_a_Metrics_Dashboard> kubectl get pods --all-namespaces
 NAMESPACE       NAME                                                     READY   STATUS      RESTARTS   AGE
 kube-system     helm-install-traefik-nxrhd                               0/1     Completed   0          106m
@@ -238,8 +239,9 @@ kube-system     metrics-server-7b4f8b595-lvbnq                           1/1    
 default         backend-app-5f749755f4-l4664                             1/1     Running     2          56m
 monitoring      prometheus-grafana-7f854c9f9-s585f                       2/2     Running     2          76m
 kube-system     traefik-5dd496474-ndn6f                                  1/1     Running     2          105m
+```
 
-
+```bash
 PS C:\Users\Noel\Desktop\udacity\MetricsDashboard\Project_Starter_Files-Building_a_Metrics_Dashboard> kubectl get services --all-namespaces
 NAMESPACE       NAME                                                 TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                        AGE
 default         kubernetes                                           ClusterIP      10.43.0.1       <none>        443/TCP                        109m
@@ -265,11 +267,11 @@ default         backend-service                                      LoadBalance
 default         trial-service                                        LoadBalancer   10.43.60.43     <pending>     8080:32537/TCP                 58m
 default         frontend-service                                     LoadBalancer   10.43.225.146   10.0.2.15     8080:32576/TCP                 58m
 kube-system     traefik                                              LoadBalancer   10.43.248.101   10.0.2.15     80:30603/TCP,443:31841/TCP     108m
-
+```
 ## Setup the Jaeger and Prometheus source
 *TODO:* Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
 
-![Grafana dashboard](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/Grafana_dashboard.PNG)
+![Grafana dashboard](Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/Grafana_dashboard.PNG)
 
 ## Create a Basic Dashboard
 *TODO:* Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here.
