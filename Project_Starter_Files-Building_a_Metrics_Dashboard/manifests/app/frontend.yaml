@@ -2,19 +2,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-app
+  labels:
+    app: frontend
 spec:
   replicas: 3
   selector:
     matchLabels:
       app: frontend
+      release: prometheus
   template:
     metadata:
       labels:
         app: frontend
+        release: prometheus
     spec:
       containers:
       - name: frontend
-        image: ghcr.io/thejaysmith/myfrontend:v1
+        image: noelsharker/dashboard_frontend:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
 ---
@@ -22,10 +27,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: frontend-service
+  labels:
+    app: frontend
+    release: prometheus
 spec:
   selector:
     app: frontend
+    release: prometheus
   ports:
-    - port: 8080
+    - name: frontend
+      port: 8082
       targetPort: 8080
   type: LoadBalancer

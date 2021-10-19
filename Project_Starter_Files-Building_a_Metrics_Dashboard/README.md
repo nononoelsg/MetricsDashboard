@@ -79,15 +79,14 @@ Visit https://github.com/prometheus-operator/kube-prometheus for instructions on
 ##  Grafana and Prometheus Pods
 
 ```bash
-vagrant@localhost:~> kubectl get pods --namespace=monitoring
+kubectl get pods --namespace=monitoring
 NAME                                                     READY   STATUS    RESTARTS   AGE
-prometheus-prometheus-node-exporter-77qjz                1/1     Running   0          5m13s
-prometheus-kube-prometheus-operator-8554997fc-9k9nz      1/1     Running   0          5m12s
-prometheus-kube-state-metrics-569d7854c4-x9f5b           1/1     Running   0          5m12s
-alertmanager-prometheus-kube-prometheus-alertmanager-0   2/2     Running   0          4m29s
-prometheus-grafana-7f854c9f9-s585f                       2/2     Running   0          5m12s
-prometheus-prometheus-kube-prometheus-prometheus-0       2/2     Running   0          4m25s
-vagrant@localhost:~>
+prometheus-prometheus-node-exporter-wdst4                1/1     Running   0          2m45s
+prometheus-kube-prometheus-operator-8554997fc-dvxnb      1/1     Running   0          2m45s
+prometheus-kube-state-metrics-569d7854c4-2czlx           1/1     Running   0          2m45s
+alertmanager-prometheus-kube-prometheus-alertmanager-0   2/2     Running   0          2m3s
+prometheus-grafana-7f854c9f9-78cz5                       2/2     Running   0          2m45s
+prometheus-prometheus-kube-prometheus-prometheus-0       2/2     Running   0          118s
 ```
 
 ##  Install Jaeger
@@ -106,26 +105,17 @@ rolebinding.rbac.authorization.k8s.io/jaeger-operator created
 vagrant@localhost:~> kubectl create -n observability -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/master/deploy/operator.yaml
 deployment.apps/jaeger-operator created
 vagrant@localhost:~> kubectl get all -n observability
-NAME                                   READY   STATUS              RESTARTS   AGE
-pod/jaeger-operator-5977dbf59f-c2xmd   0/1     ContainerCreating   0          17s
-
-NAME                              READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/jaeger-operator   0/1     1            0           30s
-
-NAME                                         DESIRED   CURRENT   READY   AGE
-replicaset.apps/jaeger-operator-5977dbf59f   1         1         0       30s
-vagrant@localhost:~> kubectl get all -n observability
 NAME                                   READY   STATUS    RESTARTS   AGE
-pod/jaeger-operator-5977dbf59f-c2xmd   1/1     Running   0          88s
+pod/jaeger-operator-5977dbf59f-krb2r   1/1     Running   0          52s
 
-NAME                              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
-service/jaeger-operator-metrics   ClusterIP   10.43.197.144   <none>        8383/TCP,8686/TCP   16s
+NAME                              TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)             AGE
+service/jaeger-operator-metrics   ClusterIP   10.43.201.73   <none>        8383/TCP,8686/TCP   5s
 
 NAME                              READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/jaeger-operator   1/1     1            1           101s
+deployment.apps/jaeger-operator   1/1     1            1           53s
 
 NAME                                         DESIRED   CURRENT   READY   AGE
-replicaset.apps/jaeger-operator-5977dbf59f   1         1         1       104s
+replicaset.apps/jaeger-operator-5977dbf59f   1         1         1       53s
 
 ```
 
@@ -149,49 +139,48 @@ service/frontend-service created
 deployment.apps/trial-app created
 service/trial-service created
 PS C:\Users\Noel\Desktop\udacity\MetricsDashboard\Project_Starter_Files-Building_a_Metrics_Dashboard\manifests> kubectl get all
-NAME                               READY   STATUS              RESTARTS   AGE
-pod/backend-app-5f749755f4-fbbkx   0/1     ContainerCreating   0          28s
-pod/svclb-backend-service-qpr6x    0/1     Pending             0          27s
-pod/frontend-app-75cd57cfd-lzkp4   0/1     ContainerCreating   0          27s
-pod/backend-app-5f749755f4-dhxrg   0/1     ContainerCreating   0          27s
-pod/backend-app-5f749755f4-l4664   0/1     ContainerCreating   0          27s
-pod/frontend-app-75cd57cfd-qzgbc   0/1     ContainerCreating   0          27s
-pod/svclb-trial-service-crlbn      0/1     Pending             0          19s
-pod/frontend-app-75cd57cfd-cvnmv   0/1     ContainerCreating   0          27s
-pod/svclb-frontend-service-6rt6l   0/1     ContainerCreating   0          25s
-pod/trial-app-6cd98d67f4-496bz     0/1     ContainerCreating   0          25s
-pod/trial-app-6cd98d67f4-b7rmx     0/1     ContainerCreating   0          24s
-pod/trial-app-6cd98d67f4-2w42c     0/1     ContainerCreating   0          24s
+NAME                                READY   STATUS    RESTARTS   AGE
+pod/svclb-backend-service-f78xq     1/1     Running   0          3m13s
+pod/svclb-frontend-service-rq9mk    1/1     Running   0          3m8s
+pod/svclb-trial-service-bbx6b       1/1     Running   0          3m1s
+pod/frontend-app-86c746c449-pgddj   1/1     Running   0          3m12s
+pod/frontend-app-86c746c449-9kbc4   1/1     Running   0          3m10s
+pod/frontend-app-86c746c449-b74fk   1/1     Running   0          3m10s
+pod/backend-app-76fddbbb79-kvw9q    1/1     Running   0          3m14s
+pod/trial-app-67788fc54c-lvtrh      1/1     Running   0          3m7s
+pod/trial-app-67788fc54c-ksv9v      1/1     Running   0          3m7s
+pod/trial-app-67788fc54c-v4sb9      1/1     Running   0          3m7s
+pod/backend-app-76fddbbb79-2lnch    1/1     Running   0          3m14s
+pod/backend-app-76fddbbb79-zfmw4    1/1     Running   0          3m14s
 
 NAME                       TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
-service/kubernetes         ClusterIP      10.43.0.1       <none>        443/TCP          50m
-service/backend-service    LoadBalancer   10.43.19.211    <pending>     80:30447/TCP     29s
-service/frontend-service   LoadBalancer   10.43.225.146   <pending>     8080:32576/TCP   27s
-service/trial-service      LoadBalancer   10.43.60.43     <pending>     8080:32537/TCP   22s
+service/kubernetes         ClusterIP      10.43.0.1       <none>        443/TCP          24m
+service/backend-service    LoadBalancer   10.43.113.189   10.0.2.15     8081:32107/TCP   3m15s
+service/frontend-service   LoadBalancer   10.43.68.45     10.0.2.15     8082:31037/TCP   3m11s
+service/trial-service      LoadBalancer   10.43.119.175   10.0.2.15     8083:31413/TCP   3m7s
 
 NAME                                    DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
-daemonset.apps/svclb-backend-service    1         1         0       1            0           <none>          28s
-daemonset.apps/svclb-frontend-service   1         1         0       1            0           <none>          27s
-daemonset.apps/svclb-trial-service      1         1         0       1            0           <none>          22s
+daemonset.apps/svclb-backend-service    1         1         1       1            1           <none>          3m15s
+daemonset.apps/svclb-frontend-service   1         1         1       1            1           <none>          3m11s
+daemonset.apps/svclb-trial-service      1         1         1       1            1           <none>          3m7s
 
 NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/frontend-app   0/3     3            0           28s
-deployment.apps/backend-app    0/3     3            0           29s
-deployment.apps/trial-app      0/3     3            0           27s
+deployment.apps/frontend-app   3/3     3            3           3m15s
+deployment.apps/trial-app      3/3     3            3           3m11s
+deployment.apps/backend-app    3/3     3            3           3m15s
 
-NAME                                     DESIRED   CURRENT   READY   AGE
-replicaset.apps/frontend-app-75cd57cfd   3         3         0       28s
-replicaset.apps/backend-app-5f749755f4   3         3         0       29s
-replicaset.apps/trial-app-6cd98d67f4     3         3         0       25s
-PS C:\Users\Noel\Desktop\udacity\MetricsDashboard\Project_Starter_Files-Building_a_Metrics_Dashboard\manifests>
+NAME                                      DESIRED   CURRENT   READY   AGE
+replicaset.apps/frontend-app-86c746c449   3         3         3       3m14s
+replicaset.apps/trial-app-67788fc54c      3         3         3       3m9s
+replicaset.apps/backend-app-76fddbbb79    3         3         3       3m15s
 ```
 
 ##  Exposing Grafana
 
 ```bash
 vagrant@localhost:~> kubectl get pod -n monitoring | grep grafana
-prometheus-grafana-7f854c9f9-s585f                       2/2     Running      0          64m
-vagrant@localhost:~> kubectl port-forward -n monitoring prometheus-grafana-7f854c9f9-s585f --address 0.0.0.0 3000
+prometheus-grafana-7f854c9f9-78cz5                       2/2     Running   0          17m
+vagrant@localhost:~> kubectl port-forward -n monitoring prometheus-grafana-7f854c9f9-78cz5 --address 0.0.0.0 3000
 Forwarding from 0.0.0.0:3000 -> 3000
 Handling connection for 3000
 Handling connection for 3000
@@ -200,87 +189,106 @@ Handling connection for 3000
 Handling connection for 3000
 Handling connection for 3000
 ```
-![Grafana dashboard](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/Grafana%20login%20page.PNG)
+![Grafana login](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/Grafana%20login%20page.PNG)
 
 ##  Exposing the application
 
 ```bash
-
+PS C:\Users\Noel\Desktop\udacity\MetricsDashboard\Project_Starter_Files-Building_a_Metrics_Dashboard>  kubectl port-forward svc/frontend-service 8080:8080
+Forwarding from 127.0.0.1:8080 -> 8080
+Forwarding from [::1]:8080 -> 8080
+Handling connection for 8080
+Handling connection for 8080
+Handling connection for 8080
+Handling connection for 8080
 ```
+![Frontend-service](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/frontend.PNG)
 
 ## Verify the monitoring installation
-*TODO:* run `kubectl` command to show the running pods and services for all components. Take a screenshot of the output and include it here to verify the installation
+run `kubectl` command to show the running pods and services for all components. Take a screenshot of the output and include it here to verify the installation
 
 ```bash
 PS C:\Users\Noel\Desktop\udacity\MetricsDashboard\Project_Starter_Files-Building_a_Metrics_Dashboard> kubectl get pods --all-namespaces
 NAMESPACE       NAME                                                     READY   STATUS      RESTARTS   AGE
-kube-system     helm-install-traefik-nxrhd                               0/1     Completed   0          106m
-default         svclb-backend-service-qpr6x                              0/1     Pending     0          56m
-default         svclb-trial-service-crlbn                                0/1     Pending     0          56m
-default         backend-app-5f749755f4-dhxrg                             1/1     Running     3          56m
-default         trial-app-6cd98d67f4-2w42c                               1/1     Running     2          56m
-default         svclb-frontend-service-6rt6l                             1/1     Running     2          56m
-monitoring      prometheus-kube-prometheus-operator-8554997fc-9k9nz      1/1     Running     2          76m
-default         backend-app-5f749755f4-fbbkx                             1/1     Running     2          56m
-default         frontend-app-75cd57cfd-qzgbc                             1/1     Running     2          56m
-monitoring      prometheus-prometheus-node-exporter-77qjz                1/1     Running     2          76m
-default         frontend-app-75cd57cfd-lzkp4                             1/1     Running     2          56m
-kube-system     local-path-provisioner-7ff9579c6-nbl49                   1/1     Running     3          106m
-monitoring      alertmanager-prometheus-kube-prometheus-alertmanager-0   2/2     Running     6          76m
-default         frontend-app-75cd57cfd-cvnmv                             1/1     Running     1          56m
-kube-system     coredns-88dbd9b97-nv6l9                                  1/1     Running     3          106m
-monitoring      prometheus-kube-state-metrics-569d7854c4-x9f5b           1/1     Running     4          76m
-kube-system     svclb-traefik-dvs6x                                      2/2     Running     4          105m
-default         trial-app-6cd98d67f4-496bz                               1/1     Running     2          56m
-monitoring      prometheus-prometheus-kube-prometheus-prometheus-0       2/2     Running     2          76m
-observability   jaeger-operator-5977dbf59f-c2xmd                         1/1     Running     2          66m
-default         trial-app-6cd98d67f4-b7rmx                               1/1     Running     2          56m
-kube-system     metrics-server-7b4f8b595-lvbnq                           1/1     Running     2          106m
-default         backend-app-5f749755f4-l4664                             1/1     Running     2          56m
-monitoring      prometheus-grafana-7f854c9f9-s585f                       2/2     Running     2          76m
-kube-system     traefik-5dd496474-ndn6f                                  1/1     Running     2          105m
+kube-system     local-path-provisioner-7ff9579c6-d6d74                   1/1     Running     0          31m
+kube-system     metrics-server-7b4f8b595-2jcjz                           1/1     Running     0          31m
+kube-system     helm-install-traefik-2ntd5                               0/1     Completed   0          31m
+kube-system     svclb-traefik-hlgbl                                      2/2     Running     0          30m
+monitoring      prometheus-prometheus-node-exporter-wdst4                1/1     Running     0          22m
+monitoring      prometheus-kube-prometheus-operator-8554997fc-dvxnb      1/1     Running     0          22m
+monitoring      prometheus-kube-state-metrics-569d7854c4-2czlx           1/1     Running     0          22m
+monitoring      alertmanager-prometheus-kube-prometheus-alertmanager-0   2/2     Running     0          22m
+monitoring      prometheus-grafana-7f854c9f9-78cz5                       2/2     Running     0          22m
+monitoring      prometheus-prometheus-kube-prometheus-prometheus-0       2/2     Running     0          22m
+observability   jaeger-operator-5977dbf59f-krb2r                         1/1     Running     0          17m
+default         svclb-backend-service-f78xq                              1/1     Running     0          10m
+default         svclb-frontend-service-rq9mk                             1/1     Running     0          10m
+default         svclb-trial-service-bbx6b                                1/1     Running     0          10m
+default         frontend-app-86c746c449-pgddj                            1/1     Running     0          10m
+kube-system     coredns-88dbd9b97-26fmc                                  1/1     Running     0          31m
+default         frontend-app-86c746c449-9kbc4                            1/1     Running     0          10m
+kube-system     traefik-5dd496474-zlmh5                                  1/1     Running     0          30m
+default         frontend-app-86c746c449-b74fk                            1/1     Running     0          10m
+default         backend-app-76fddbbb79-kvw9q                             1/1     Running     0          10m
+default         trial-app-67788fc54c-lvtrh                               1/1     Running     0          10m
+default         trial-app-67788fc54c-ksv9v                               1/1     Running     0          10m
+default         trial-app-67788fc54c-v4sb9                               1/1     Running     0          10m
+default         backend-app-76fddbbb79-2lnch                             1/1     Running     0          10m
+default         backend-app-76fddbbb79-zfmw4                             1/1     Running     0          10m
 ```
 
 ```bash
 PS C:\Users\Noel\Desktop\udacity\MetricsDashboard\Project_Starter_Files-Building_a_Metrics_Dashboard> kubectl get services --all-namespaces
 NAMESPACE       NAME                                                 TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                        AGE
-default         kubernetes                                           ClusterIP      10.43.0.1       <none>        443/TCP                        109m
-kube-system     kube-dns                                             ClusterIP      10.43.0.10      <none>        53/UDP,53/TCP,9153/TCP         109m
-kube-system     metrics-server                                       ClusterIP      10.43.127.82    <none>        443/TCP                        109m
-kube-system     traefik-prometheus                                   ClusterIP      10.43.82.175    <none>        9100/TCP                       108m
-kube-system     prometheus-kube-prometheus-coredns                   ClusterIP      None            <none>        9153/TCP                       79m
-monitoring      prometheus-kube-prometheus-prometheus                ClusterIP      10.43.209.235   <none>        9090/TCP                       79m
-kube-system     prometheus-kube-prometheus-kube-scheduler            ClusterIP      None            <none>        10251/TCP                      79m
-kube-system     prometheus-kube-prometheus-kube-proxy                ClusterIP      None            <none>        10249/TCP                      79m
-kube-system     prometheus-kube-prometheus-kube-etcd                 ClusterIP      None            <none>        2379/TCP                       79m
-kube-system     prometheus-kube-prometheus-kube-controller-manager   ClusterIP      None            <none>        10252/TCP                      79m
-monitoring      prometheus-kube-state-metrics                        ClusterIP      10.43.50.121    <none>        8080/TCP                       79m
-monitoring      prometheus-grafana                                   ClusterIP      10.43.232.244   <none>        80/TCP                         79m
-monitoring      prometheus-kube-prometheus-alertmanager              ClusterIP      10.43.29.151    <none>        9093/TCP                       79m
-monitoring      prometheus-kube-prometheus-operator                  ClusterIP      10.43.118.144   <none>        443/TCP                        79m
-monitoring      prometheus-prometheus-node-exporter                  ClusterIP      10.43.250.150   <none>        9100/TCP                       79m
-monitoring      alertmanager-operated                                ClusterIP      None            <none>        9093/TCP,9094/TCP,9094/UDP     78m
-kube-system     prometheus-kube-prometheus-kubelet                   ClusterIP      None            <none>        10250/TCP,10255/TCP,4194/TCP   78m
-monitoring      prometheus-operated                                  ClusterIP      None            <none>        9090/TCP                       78m
-observability   jaeger-operator-metrics                              ClusterIP      10.43.197.144   <none>        8383/TCP,8686/TCP              67m
-default         backend-service                                      LoadBalancer   10.43.19.211    <pending>     80:30447/TCP                   58m
-default         trial-service                                        LoadBalancer   10.43.60.43     <pending>     8080:32537/TCP                 58m
-default         frontend-service                                     LoadBalancer   10.43.225.146   10.0.2.15     8080:32576/TCP                 58m
-kube-system     traefik                                              LoadBalancer   10.43.248.101   10.0.2.15     80:30603/TCP,443:31841/TCP     108m
+default         kubernetes                                           ClusterIP      10.43.0.1       <none>        443/TCP                        32m
+kube-system     kube-dns                                             ClusterIP      10.43.0.10      <none>        53/UDP,53/TCP,9153/TCP         32m
+kube-system     metrics-server                                       ClusterIP      10.43.85.78     <none>        443/TCP                        32m
+kube-system     traefik-prometheus                                   ClusterIP      10.43.192.44    <none>        9100/TCP                       31m
+kube-system     traefik                                              LoadBalancer   10.43.91.46     10.0.2.15     80:31185/TCP,443:32531/TCP     31m
+monitoring      prometheus-prometheus-node-exporter                  ClusterIP      10.43.178.21    <none>        9100/TCP                       23m
+kube-system     prometheus-kube-prometheus-coredns                   ClusterIP      None            <none>        9153/TCP                       23m
+kube-system     prometheus-kube-prometheus-kube-scheduler            ClusterIP      None            <none>        10251/TCP                      23m
+kube-system     prometheus-kube-prometheus-kube-proxy                ClusterIP      None            <none>        10249/TCP                      23m
+kube-system     prometheus-kube-prometheus-kube-etcd                 ClusterIP      None            <none>        2379/TCP                       23m
+kube-system     prometheus-kube-prometheus-kube-controller-manager   ClusterIP      None            <none>        10252/TCP                      23m
+monitoring      prometheus-kube-state-metrics                        ClusterIP      10.43.21.143    <none>        8080/TCP                       23m
+monitoring      prometheus-grafana                                   ClusterIP      10.43.33.105    <none>        80/TCP                         23m
+monitoring      prometheus-kube-prometheus-prometheus                ClusterIP      10.43.55.187    <none>        9090/TCP                       23m
+monitoring      prometheus-kube-prometheus-alertmanager              ClusterIP      10.43.130.31    <none>        9093/TCP                       23m
+monitoring      prometheus-kube-prometheus-operator                  ClusterIP      10.43.88.13     <none>        443/TCP                        23m
+kube-system     prometheus-kube-prometheus-kubelet                   ClusterIP      None            <none>        10250/TCP,10255/TCP,4194/TCP   23m
+monitoring      alertmanager-operated                                ClusterIP      None            <none>        9093/TCP,9094/TCP,9094/UDP     23m
+monitoring      prometheus-operated                                  ClusterIP      None            <none>        9090/TCP                       23m
+observability   jaeger-operator-metrics                              ClusterIP      10.43.201.73    <none>        8383/TCP,8686/TCP              17m
+default         backend-service                                      LoadBalancer   10.43.113.189   10.0.2.15     8081:32107/TCP                 11m
+default         frontend-service                                     LoadBalancer   10.43.68.45     10.0.2.15     8082:31037/TCP                 11m
+default         trial-service                                        LoadBalancer   10.43.119.175   10.0.2.15     8083:31413/TCP                 11m
 ```
 ## Setup the Jaeger and Prometheus source
-*TODO:* Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
+Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
 
 ![Grafana dashboard](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/Grafana_dashboard.PNG)
 
 ## Create a Basic Dashboard
-*TODO:* Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here.
+Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here.
+
+![Grafana Basic dashboard](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/basicDashboard.PNG)
 
 ## Describe SLO/SLI
-*TODO:* Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
+Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
+
+A Service-Level Indicator (SLI) is a specific metric used to measure the performance of a service.
+
+SLO (service Level Object) is something like your company require the application to have an monthly uptime of 99.9% and the average request response time of a web request would take < 1 seconds to complete.
 
 ## Creating SLI metrics.
-*TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
+It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
+
+1. disk, cpu and memory usage.
+2. Services uptime
+3. http error log
+4. Traffic status and logs
+5. API call montoring
 
 ## Create a Dashboard to measure our SLIs
 *TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
