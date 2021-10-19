@@ -284,14 +284,16 @@ SLO (service Level Object) is something like your company require the applicatio
 ## Creating SLI metrics.
 It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
 
-1. disk, cpu and memory usage.
-2. Services uptime
-3. http error log
-4. Traffic status and logs
-5. API call montoring
+1. disk, cpu and memory usage, so that you can keep track when overload
+2. Services uptime, you know when service is down or restarted
+3. http error log, to see server error
+4. Traffic status and logs, to see the when the error appear
+5. API call montoring, see API errors
 
 ## Create a Dashboard to measure our SLIs
-*TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
+Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
+
+![Grafana Basic dashboard](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/4xxand5xx.PNG)
 
 ## Tracing our Flask App
 *TODO:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here.
@@ -300,21 +302,21 @@ It is important to know why we want to measure certain metrics for our customer.
 *TODO:* Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.
 
 ## Report Error
-*TODO:* Using the template below, write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue.
+Using the template below, write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue.
 
 TROUBLE TICKET
 
-Name:
+Name: Http Error 500 - POST /star 
 
-Date:
+Date: 19/10/2021
 
-Subject:
+Subject: mongoDB instance missing
 
-Affected Area:
+Affected Area: Backend /star api endpoint 
 
-Severity:
+Severity: HIGH
 
-Description:
+Description: API /star mongoDB does not exist
 
 
 ## Creating SLIs and SLOs
