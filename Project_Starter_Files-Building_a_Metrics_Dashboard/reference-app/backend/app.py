@@ -19,6 +19,7 @@ def config_tracer():
                 'sampler': {
                 'type': 'const',
                 'param': 1,
+                
             },
             'logging': True,
         },
