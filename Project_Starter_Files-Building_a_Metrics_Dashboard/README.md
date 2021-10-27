@@ -296,10 +296,13 @@ Create a dashboard to measure the uptime of the frontend and backend services We
 ![Grafana Basic dashboard](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/4xx.PNG)
 
 ## Tracing our Flask App
-*TODO:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here.
+We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here.
+![Jaeger backend](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/jaeger_backend.PNG)
 
 ## Jaeger in Dashboards
-*TODO:* Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.
+Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.
+
+![Jaeger backend](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/jaeger.PNG)
 
 ## Report Error
 Using the template below, write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue.
