@@ -353,3 +353,6 @@ Now that we have our SLIs and SLOs, create KPIs to accurately measure these metr
 
 ## Final Dashboard
 Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
+![Dashboard part 1](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/DashboardPart1.PNG)
+
+![Dashboard part 2](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/DashboardPart2.PNG)
