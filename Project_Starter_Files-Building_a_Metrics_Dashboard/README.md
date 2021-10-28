@@ -273,6 +273,8 @@ Expose Grafana to the internet and then setup Prometheus as a data source. Provi
 
 ![Grafana dashboard](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/Grafana_dashboard.PNG)
 
+![Prometheus](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/datasource.PNG)
+
 ## Create a Basic Dashboard
 Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here.
 
@@ -305,6 +307,8 @@ We will create a Jaeger span to measure the processes on the backend. Once you f
 
 ## Jaeger in Dashboards
 Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.
+
+![Jaeger Tracking](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/jagertrace.PNG)
 
 ![Jaeger backend](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/jaeger.PNG)
 
