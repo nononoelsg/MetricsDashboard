@@ -191,6 +191,8 @@ Handling connection for 3000
 ```
 ![Grafana login](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/Grafana%20login%20page.PNG)
 
+![Prometheus](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/datasource.PNG)
+
 ##  Exposing the application
 
 ```bash
@@ -206,6 +208,8 @@ Handling connection for 8080
 
 ## Verify the monitoring installation
 run `kubectl` command to show the running pods and services for all components. Take a screenshot of the output and include it here to verify the installation
+
+![Kubectl get all](https://github.com/nononoelsg/MetricsDashboard/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/getall.PNG)
 
 ```bash
 PS C:\Users\Noel\Desktop\udacity\MetricsDashboard\Project_Starter_Files-Building_a_Metrics_Dashboard> kubectl get pods --all-namespaces
@@ -328,26 +332,27 @@ We want to create an SLO guaranteeing that our application has a 99.95% uptime p
 1. Uptime - 99% service up and running
 2. Http Error Rate - less than 95%
 3. Http request latency - less than 50ms
+4. CPU and Memory usage - ensure dont overload
 
 
 ## Building KPIs for our plan
 Now that we have our SLIs and SLOs, create KPIs to accurately measure these metrics. We will make a dashboard for this, but first write them down here.
 
-##### Services Up
+##### Services Uptime available for client to access the application
   * Backend uptime
   * Frontend uptime
 
-##### Http server error
+##### Http server error, to log if there is an 4xx or 5xx error
   * Backend http 4xx and 5xx
   * Frontend http 4xx and 5xx
   * Number of successful/failure requests per sec
 
-##### Response time
+##### Response time, to log the amount of traffic into the webserver
   * Average response time
   * Median response time
   * 90% reponse time
 
-##### Resource usage
+##### Resource usage, to log the usage of the cpu which could affect the client if it too high
   * CPU usage
   * Memory usage
 
